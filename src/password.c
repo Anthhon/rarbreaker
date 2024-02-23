@@ -21,7 +21,7 @@ void password_reallocate(char *password, uint32_t pass_len)
     memset(password, 0, pass_len + 1);
 }
 
-void password_generate(char *password, char *characters, uint32_t pass_len, unsigned int seed)
+void password_generate_random(char *password, char *characters, uint32_t pass_len, unsigned int seed)
 {
     srand(seed);
     uint32_t characters_l = strlen(characters);
@@ -72,7 +72,7 @@ void password_crack_random(char *filepath, char *characters, uint32_t pass_len)
 
         long long time_ns = current_time_ns();
         volatile unsigned int seed = (unsigned int)time_ns + (unsigned int)tries_count;
-        password_generate(password, characters, pass_len, seed);
+        password_generate_random(password, characters, pass_len, seed);
 
         if (set_contains(&set, password)) {
             //printf("[!] Already used %s\n", password);
