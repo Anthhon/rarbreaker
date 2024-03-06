@@ -1,4 +1,8 @@
+#ifdef _WIN32
+#include <windows.h>
+#else
 #include <time.h>
+#endif
 
 long long current_time_ns(void)
 {
